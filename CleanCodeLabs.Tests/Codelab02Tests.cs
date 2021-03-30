@@ -9,8 +9,8 @@ namespace CleanCodeLabs.Tests
     [TestClass]
     public class Codelab02Tests
     {
-        private StringBuilder _fakeOutput;
         private ResourceAllocator _allocator;
+        private StringBuilder _fakeOutput;
 
         [TestInitialize]
         public void Initialize()
@@ -30,9 +30,10 @@ namespace CleanCodeLabs.Tests
         [TestMethod]
         public void TestDeAllocateSpaceSlot()
         {
-            _allocator.Deallocate(ResourceAllocator.SlotCategory.SpaceSlot , 2);
+            _allocator.Deallocate(ResourceAllocator.SlotCategory.SpaceSlot, 2);
             Assert.IsTrue(_fakeOutput.ToString().StartsWith("Space slot Marked as free for resourceId = 2"));
         }
+
         [TestMethod]
         public void TestAllocateTimeSlot()
         {
