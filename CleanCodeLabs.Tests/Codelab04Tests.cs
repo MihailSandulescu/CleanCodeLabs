@@ -9,14 +9,7 @@ namespace CleanCodeLabs.Tests
     [TestClass]
     public class Codelab04Tests
     {
-        private const string _expectedResult =
-            @"Doing some hard work, but I do get tired
-Working like a true working horse
-DOING SO MUCH WORK, BEEP
-Eating my 'bokes'
-Eating some jummy hay!
-RECHARGING BATTERIES, BEEP
-";
+        private string _expectedResult;
 
         private StringBuilder _fakeOutput;
 
@@ -25,6 +18,15 @@ RECHARGING BATTERIES, BEEP
         {
             _fakeOutput = new StringBuilder();
             Console.SetOut(new StringWriter(_fakeOutput));
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Doing some hard work, but I do get tired");
+            sb.AppendLine("Working like a true working horse");
+            sb.AppendLine("DOING SO MUCH WORK, BEEP");
+            sb.AppendLine("Eating my 'bokes'");
+            sb.AppendLine("Eating some jummy hay!");
+            sb.AppendLine("RECHARGING BATTERIES, BEEP");
+            _expectedResult = sb.ToString();
         }
 
         [TestMethod]

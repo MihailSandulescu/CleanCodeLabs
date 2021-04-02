@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Codelab06\" />
+    <Compile Remove="Codelab06\**" />
+    <EmbeddedResource Remove="Codelab06\**" />
+    <None Remove="Codelab06\**" />
   </ItemGroup>
 
 </Project>

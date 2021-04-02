@@ -9,12 +9,7 @@ namespace CleanCodeLabs.Tests
     [TestClass]
     public class Codelab03Tests
     {
-        private const string _expectedResult =
-            @"Quack...
-Quack Quack... (in a robot voice)
-Swim...
-";
-
+        private string _expectedResult;
         private StringBuilder _fakeOutput;
 
         [TestInitialize]
@@ -22,6 +17,12 @@ Swim...
         {
             _fakeOutput = new StringBuilder();
             Console.SetOut(new StringWriter(_fakeOutput));
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Quack...");
+            sb.AppendLine("Quack Quack... (in a robot voice)");
+            sb.AppendLine("Swim...");
+            _expectedResult = sb.ToString();
         }
 
         [TestMethod]
