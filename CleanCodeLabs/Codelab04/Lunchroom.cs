@@ -16,10 +16,10 @@ namespace CleanCodeLabs.Codelab04
         {
             foreach (var luncher in _lunchers)
             {
-                // A required check because of our bad design :'(
-                if (luncher.GetType() != typeof(Robot))
+                Console.Write(luncher.Eat());
+                if(luncher.Eat() != null)
                 {
-                    Console.WriteLine(luncher.Eat());
+                    Console.WriteLine("");
                 }
             }
         }

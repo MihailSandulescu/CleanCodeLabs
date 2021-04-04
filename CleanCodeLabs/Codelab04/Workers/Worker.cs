@@ -1,6 +1,6 @@
 ﻿namespace CleanCodeLabs.Codelab04.Workers
 {
-    public abstract class Worker
+    public abstract class Worker : ICanEat, IChargeable
     {
         protected Worker(string name)
         {
@@ -11,8 +11,14 @@
 
         public abstract string Work();
 
-        public abstract string Eat();
+        public virtual string Eat()
+        {
+            return null;
+        }
 
-        public abstract string RechargeBatteries();
+        public virtual string RechargeBatteries()
+        {
+            return null;
+        }
     }
 }

@@ -9,10 +9,10 @@ namespace CleanCodeLabs.Codelab04
         {
             foreach (var recharger in rechargers)
             {
-                // A required check because of our bad design :'(
-                if (recharger.GetType() == typeof(Robot))
+                Console.Write(recharger.RechargeBatteries());
+                if(recharger.RechargeBatteries() != null)
                 {
-                    Console.WriteLine(recharger.RechargeBatteries());
+                    Console.WriteLine("");
                 }
             }
         }

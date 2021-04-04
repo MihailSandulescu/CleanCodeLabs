@@ -8,11 +8,6 @@ namespace CleanCodeLabs.Codelab04.Workers
         {
         }
 
-        public override string Eat()
-        {
-            throw new NotImplementedException("I AM ROBOT, I DO NOT EAT, BEEP");
-        }
-
         public override string RechargeBatteries()
         {
             return "RECHARGING BATTERIES, BEEP";

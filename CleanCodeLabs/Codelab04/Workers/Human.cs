@@ -2,7 +2,7 @@
 
 namespace CleanCodeLabs.Codelab04.Workers
 {
-    public class Human : Worker
+    public class Human : Worker, ICanEat
     {
         public Human(string name) : base(name)
         {
@@ -11,11 +11,6 @@ namespace CleanCodeLabs.Codelab04.Workers
         public override string Eat()
         {
             return "Eating my 'bokes'";
-        }
-
-        public override string RechargeBatteries()
-        {
-            throw new NotImplementedException("A human does not have batteries to recharge");
         }
 
         public override string Work()
