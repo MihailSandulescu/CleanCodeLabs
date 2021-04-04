@@ -7,19 +7,18 @@ namespace CleanCodeLabs.Codelab05
     /// </summary>
     internal class Switch
     {
-        private readonly Lamp _lamp = new Lamp(Color.Yellow);
+        public ISwitchable switchable;
         public bool IsSwitchOn { get; private set; }
-
         public void Toggle()
         {
             IsSwitchOn = !IsSwitchOn;
             if (IsSwitchOn)
             {
-                _lamp.TurnOn();
+               switchable.TurnOn();
             }
             else
             {
-                _lamp.TurnOff();
+                switchable.TurnOff();
             }
         }
     }

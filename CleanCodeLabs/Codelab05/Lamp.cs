@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace CleanCodeLabs.Codelab05
 {
-    internal class Lamp
+    internal class Lamp : ISwitchable
     {
         public Lamp(Color lightColor)
         {
