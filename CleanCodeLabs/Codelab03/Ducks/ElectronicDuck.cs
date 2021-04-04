@@ -16,7 +16,7 @@ namespace CleanCodeLabs.Codelab03.Ducks
 
         public override void Swim()
         {
-            throw new NotImplementedException("Eletronic ducks can't swim, they'll break in water!");
+            Console.WriteLine("Eletronic ducks can't swim, they'll break in water!");
         }
 
         public void TurnOn()

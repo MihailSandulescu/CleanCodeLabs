@@ -27,7 +27,7 @@ namespace CleanCodeLabs.Codelab03
         {
             foreach (var duck in ducks)
             {
-                if (duck.GetType() != typeof(ElectronicDuck))
+                if(duck.GetType() != typeof(ElectronicDuck))
                 {
                     duck.Swim();
                 }
