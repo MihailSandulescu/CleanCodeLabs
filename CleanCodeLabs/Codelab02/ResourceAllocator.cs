@@ -4,10 +4,10 @@ namespace CleanCodeLabs.Codelab02
 {
     public class ResourceAllocator
     {
-        public enum SlotCategory
+        public enum SlotCategory : int
         {
-            TimeSlot,
-            SpaceSlot
+            TimeSlot = 1,
+            SpaceSlot = 2
         }
 
         private static readonly int INVALID_RESOURCE_ID = -1;
@@ -15,69 +15,56 @@ namespace CleanCodeLabs.Codelab02
         public int Allocate(SlotCategory slotCategory)
         {
             int resourceId;
-            switch (slotCategory)
+
+            foreach (SlotCategory category in (SlotCategory[])Enum.GetValues(typeof(SlotCategory)))
             {
-                case SlotCategory.TimeSlot:
-                    resourceId = FindFreeTimeSlot();
-                    MarkTimeSlotBusy(resourceId);
-                    break;
-                case SlotCategory.SpaceSlot:
-                    resourceId = FindFreeSpaceSlot();
-                    MarkSpaceSlotBusy(resourceId);
-                    break;
-                default:
-                    Console.WriteLine("ERROR: Attempted to allocate invalid resource");
-                    resourceId = INVALID_RESOURCE_ID;
-                    break;
+                if(category.ToString().Equals(slotCategory.ToString()))
+                {
+                    resourceId = FindFreeSlot(slotCategory);
+                    MarkSlotBusy(slotCategory, resourceId);
+                    return resourceId;
+                }
             }
 
-            return resourceId;
+            Console.WriteLine("ERROR: Attempted to allocate invalid resource");
+            return INVALID_RESOURCE_ID;
         }
 
         public void Deallocate(SlotCategory slotCategory, int resourceId)
         {
-            switch (slotCategory)
+            bool flag = false;
+
+            foreach (SlotCategory category in (SlotCategory[])Enum.GetValues(typeof(SlotCategory)))
             {
-                case SlotCategory.TimeSlot:
-                    MarkTimeSlotFree(resourceId);
+                if (category == slotCategory)
+                {
+                    MarkSlotFree(slotCategory, resourceId);
+                    flag = true;
                     break;
-                case SlotCategory.SpaceSlot:
-                    MarkSpaceSlotFree(resourceId);
-                    break;
-                default:
-                    Console.WriteLine("ERROR: attempted to free invalid resource");
-                    break;
+                }
+            }
+
+            if(!flag)
+            {
+                Console.WriteLine("ERROR: attempted to free invalid resource");
             }
         }
 
-        private void MarkSpaceSlotFree(int resourceId)
+        private void MarkSlotFree(SlotCategory slotCategory, int resourceId)
         {
-            Console.WriteLine("Space slot Marked as free for resourceId = " + resourceId);
+            string slotName = slotCategory.ToString()[0..^4];
+            Console.WriteLine("{0} slot Marked as free for resourceId = {1}", slotName, resourceId);
         }
 
-        private void MarkTimeSlotFree(int resourceId)
+        private void MarkSlotBusy(SlotCategory slotCategory, int resourceId)
         {
-            Console.WriteLine("Time slot Marked as free for resourceId = " + resourceId);
+            string slotName = slotCategory.ToString()[0..^4];
+            Console.WriteLine("{0} slot Marked as busy for resourceId = {1}", slotName, resourceId) ;
         }
 
-        private void MarkSpaceSlotBusy(int resourceId)
+        private int FindFreeSlot(SlotCategory slotCategory)
         {
-            Console.WriteLine("Space slot Marked as busy for resourceId = " + resourceId);
-        }
-
-        private int FindFreeSpaceSlot()
-        {
-            return new Random().Next() * 100;
-        }
-
-        private void MarkTimeSlotBusy(int resourceId)
-        {
-            Console.WriteLine("Time slot Marked as busy for resourceId = " + resourceId);
-        }
-
-        private int FindFreeTimeSlot()
-        {
-            return new Random().Next() * 50;
+            return new Random().Next() * 50 * (int)slotCategory;
         }
     }
 }
