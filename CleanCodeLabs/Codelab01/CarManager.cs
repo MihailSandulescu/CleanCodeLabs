@@ -5,54 +5,51 @@ namespace CleanCodeLabs.Codelab01
 {
     public class CarManager
     {
-        private readonly List<Car> _carsDb = new List<Car>(new[]
-        {
-            new Car("1", "Golf III", "Volkswagen"),
-            new Car("2", "Multipla", "Fiat"),
-            new Car("3", "Megane", "Renault")
-        });
+            private readonly CarDb _carsDb;
 
-
-        public Car GetCarFromDb(string carId)
-        {
-            foreach (var car in _carsDb)
+            public CarManager()
             {
-                if (car.Id.Equals(carId))
+                _carsDb = new CarDb();
+            }
+
+            public Car GetCarById(string id)
+            {
+                foreach (var car in _carsDb.GetCarsFromDb())
                 {
-                    return car;
+                    if (car.Id.Equals(id))
+                    {
+                        return car;
+                    }
                 }
+                return null;
             }
 
-            return null;
-        }
-
-        public string GetCarsNames()
-        {
-            var sb = new StringBuilder();
-            foreach (var car in _carsDb)
+            public string GetCarsNames()
             {
-                sb.Append(car.Brand);
-                sb.Append(" ");
-                sb.Append(car.Model);
-                sb.Append(", ");
-            }
-
-            var carNames = sb.ToString();
-            return carNames.Substring(0, carNames.Length - 2);
-        }
-
-        public Car GetBestCar()
-        {
-            Car bestCar = null;
-            foreach (var car in _carsDb)
-            {
-                if (bestCar == null || car.Model.CompareTo(bestCar.Model) > 0)
+                var sb = new StringBuilder();
+                foreach (var car in _carsDb.GetCarsFromDb())
                 {
-                    bestCar = car;
+                    sb.Append(car.Brand);
+                    sb.Append(" ");
+                    sb.Append(car.Model);
+                    sb.Append(", ");
                 }
+
+                var carNames = sb.ToString();
+                return carNames.Substring(0, carNames.Length - 2);
             }
 
-            return bestCar;
-        }
+            public Car GetBestCar()
+            {
+                Car bestCar = null;
+                foreach (var car in _carsDb.GetCarsFromDb())
+                {
+                    if (bestCar == null || car.Model.CompareTo(bestCar.Model) > 0)
+                    {
+                        bestCar = car;
+                    }
+                }
+                return bestCar;
+            }
     }
-}
+ }
